@@ -57,7 +57,36 @@ export class Record
         VIPFlag,
         embossedName,
         encodedName,
+        KYCStatus,
+        KYCRemarks,
+        travelPurpose,
+        pictureCode,
+        photoCode,
+        preferredMailingAddress,
+        currentAddressLine1,
+        currentAddressLine2,
+        currentAddressLine3,
+        currentAddressLine4,
+        currentCityCode,
+        currentStateCode,
+        currentCountryCode,
+        currentZIPCode,
+        currentPhoneNumber1,
+        currentPhoneNumber2,
+        permanentAddressLine1,
+        permanentAddressLine2,
+        permanentAddressLine3,
+        permanentAddressLine4,
+        permanentCityCode,
+        permanentStateCode,
+        permanentCountryCode,
+        permanentZIPCode,
+        permanentPhoneNumber1,
+        permanentPhoneNumber2,
+        faxNumber
+
         
+
 
 
     )
