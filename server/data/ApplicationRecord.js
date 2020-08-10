@@ -83,7 +83,11 @@ export class Record
         permanentZIPCode,
         permanentPhoneNumber1,
         permanentPhoneNumber2,
-        faxNumber
+        faxNumber,
+        registerForDNCR,
+        SMSAlertList,
+        emailAlertList,
+        statementPreference
 
         
 
