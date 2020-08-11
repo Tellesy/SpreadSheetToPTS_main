@@ -1,10 +1,12 @@
-import fs, { writeFileSync } from 'fs';
+import fs from 'fs';
 import {EOL} from 'os';
+import config from '../config';
+
 import {Record} from '../models/ApplicationRecord';
 import {extractRecordsFromSpreadSheet} from './recordExtractor';
 
-let endOfLine = EOL;
-let bankCode = '020354';
+const endOfLine = EOL;
+const bankCode = config.bank_code;
 
 
 function createApplicationFile()
@@ -67,7 +69,7 @@ function getHeader()
     var fileName = createApplicationFile();
     content.push(getHeader());
     console.log(content);
-    
+
     //should be for each (record in reocrds) here
     content.push(extractRecordsString(records));
 

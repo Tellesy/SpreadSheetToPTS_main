@@ -91,6 +91,7 @@ export class Record
         registered,
         mobileISDCode,
         registeredMobileNumber,
+        registeredMobileISDCode,
         registeredMailID,
         languagePreference,
         officeAddressLine1,
@@ -291,6 +292,7 @@ export class Record
         this._registered=        registered;
         this._mobileISDCode=        mobileISDCode;
         this._registeredMobileNumber=        registeredMobileNumber;
+        this._registeredMobileISDCode = registeredMobileISDCode;
         this._registeredMailID=        registeredMailID;
         this._languagePreference=        languagePreference;
         this._officeAddressLine1=        officeAddressLine1;
