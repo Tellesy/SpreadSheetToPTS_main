@@ -9,6 +9,8 @@ var _fs = _interopRequireDefault(require("fs"));
 
 var _os = require("os");
 
+var _ApplicationRecord = require("../models/ApplicationRecord");
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 let endOfLine = _os.EOL;
@@ -60,10 +62,36 @@ function insertHeader(fileName) {
 function generateFile(req, res, next) {
   var fileName = createApplicationFile();
   insertHeader(fileName);
+  insertRecord(fileName);
   next();
 }
 
-function insertRecord(fileName, record) {//receive an array of data
+function insertRecord(fileName) {
+  var record = new _ApplicationRecord.Record();
+  record._bankCode = bankCode;
+  record._firstName = 'fffff';
+  record._faxNumber = 'faffs';
+  var recordArray = [];
+  var recordString = '';
+  Object.keys(record).map(function (key) {
+    recordArray[key] = record[key];
+  }); //console.log(recordArray);
+
+  Object.keys(record).forEach(function (key) {
+    var value = record[key];
+
+    if (!value) {
+      value = '|';
+    }
+
+    if (recordString == '') {
+      recordString = value;
+    } else recordString = recordString + '|' + value;
+  });
+  console.log(recordString); // recordArray.forEach(function(key)
+  // {
+  //     console.log(recordArray[key]);
+  // });
 }
 
 function createFile() {

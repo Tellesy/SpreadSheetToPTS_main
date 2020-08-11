@@ -1,5 +1,6 @@
 import fs from 'fs';
 import {EOL} from 'os';
+import {Record} from '../models/ApplicationRecord';
 
 let endOfLine = EOL;
 let bankCode = '020354';
@@ -48,8 +49,6 @@ function insertHeader(fileName)
     logStream.write(header);
     logStream.end(endOfLine);
 
-    
-
 }
 
 
@@ -57,15 +56,47 @@ function insertHeader(fileName)
 
    var fileName = createApplicationFile();
    insertHeader(fileName);
-
+   insertRecord(fileName);
 
       next();
  }
 
 
- function insertRecord(fileName,record)
+ function insertRecord(fileName)
  {
-    //receive an array of data
+    var record = new Record();
+    record._bankCode = bankCode;
+    record._firstName = 'fffff';
+    record._faxNumber = 'faffs';
+    var recordArray = [];
+    var recordString = '';
+
+    Object.keys(record).map(function(key) {
+        recordArray[key] = record[key];
+});
+
+//console.log(recordArray);
+Object.keys(record).forEach(function(key)
+{
+    var value = record[key];
+    if(!value)
+    {
+        value = '|';
+    }
+    if(recordString == '')
+    {
+        recordString = value;
+    }
+    else
+    recordString = recordString+'|'+value;
+});
+
+console.log(recordString);
+// recordArray.forEach(function(key)
+// {
+//     console.log(recordArray[key]);
+// });
+  
    
  }
 
