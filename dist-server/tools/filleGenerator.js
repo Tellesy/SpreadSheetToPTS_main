@@ -62,30 +62,31 @@ function getHeader() {
   return header;
 }
 
-function generateFile(req, res, next) {
-  var records = (0, _recordExtractor.extractRecordsFromSpreadSheet)(); //records.push(record);
+function getFooter(count) {
+  var recordCount = count.toString().padStart(9, '0');
+  var footer = 'FT' + recordCount;
+  return footer;
+}
 
+function generateFile(req, res, next) {
+  var records = (0, _recordExtractor.extractRecordsFromSpreadSheet)();
   var content = [];
   var fileName = createApplicationFile();
-  content.push(getHeader());
-  console.log(content); //should be for each (record in reocrds) here
+  content.push(getHeader()); //console.log(content);
+  //should be for each (record in reocrds) here
 
-  content.push(extractRecordsString(records));
+  for (var i = 0; i < records.length; i++) {
+    content.push(extractRecordsString(records[i]));
+  }
+
+  content.push(getFooter(records.length));
   insertContentToFile(fileName, content);
   next();
 }
 
-function extractRecordsString(records) {
-  var record = new _ApplicationRecord.Record();
-  record._bankCode = bankCode;
-  record._firstName = 'fffff';
-  record._faxNumber = 'faffs';
-  var recordArray = [];
+function extractRecordsString(record) {
+  console.log(record);
   var recordString = '';
-  Object.keys(record).map(function (key) {
-    recordArray[key] = record[key];
-  }); //console.log(recordArray);
-
   Object.keys(record).forEach(function (key) {
     var value = record[key];
 

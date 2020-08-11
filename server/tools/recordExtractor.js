@@ -53,8 +53,9 @@ function extractRecordsFromSpreadSheet()
 
 
     
-
+        
         records.push(record);
+
 
 
         return records;

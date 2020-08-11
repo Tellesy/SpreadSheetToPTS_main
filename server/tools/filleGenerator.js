@@ -59,19 +59,30 @@ function getHeader()
 
 }
 
+function getFooter(count)
+{
+    var recordCount = count.toString().padStart(9,'0');
+    var footer = 'FT'+recordCount;
+
+    return footer;
+}
 
  function generateFile(req, res,next) {
 
     var records = extractRecordsFromSpreadSheet();
-    //records.push(record);
 
     var content = [];
     var fileName = createApplicationFile();
     content.push(getHeader());
-    console.log(content);
+    //console.log(content);
 
     //should be for each (record in reocrds) here
-    content.push(extractRecordsString(records));
+    for(var i =0; i<records.length; i++)
+    {
+        content.push(extractRecordsString(records[i]));
+    }
+   
+    content.push(getFooter(records.length));
 
 
     insertContentToFile(fileName,content);
@@ -79,35 +90,27 @@ function getHeader()
  }
 
 
-  function extractRecordsString(records)
+  function extractRecordsString(record)
  {
-    
-    var record = new Record();
-    record._bankCode = bankCode;
-    record._firstName = 'fffff';
-    record._faxNumber = 'faffs';
-    var recordArray = [];
+    console.log(record);
     var recordString = '';
 
-    Object.keys(record).map(function(key) {
-        recordArray[key] = record[key];
+        Object.keys(record).forEach(function(key)
+        {
+             var value = record[key];
+                if(!value)
+               {
+                    value = '|';
+                }
+                if(recordString == '')
+                 {
+                    recordString = value;
+                } 
+                else
+                recordString = recordString+'|'+value;
 });
+    
 
-//console.log(recordArray);
-Object.keys(record).forEach(function(key)
-{
-    var value = record[key];
-    if(!value)
-    {
-        value = '|';
-    }
-    if(recordString == '')
-    {
-        recordString = value;
-    }
-    else
-    recordString = recordString+'|'+value;
-});
 
 console.log(recordString);
 
