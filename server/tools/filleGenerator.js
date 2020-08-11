@@ -1,6 +1,7 @@
-import fs from 'fs';
+import fs, { writeFileSync } from 'fs';
 import {EOL} from 'os';
 import {Record} from '../models/ApplicationRecord';
+import {extractRecordsFromSpreadSheet} from './recordExtractor';
 
 let endOfLine = EOL;
 let bankCode = '020354';
@@ -34,7 +35,7 @@ function createApplicationFile()
 
 }
 
-function insertHeader(fileName)
+function getHeader()
 {
     var today = new Date();
     var day = String(today.getDate()).padStart(2, '0');
@@ -45,25 +46,40 @@ function insertHeader(fileName)
     var seconds = String(today.getSeconds()).padStart(2,'0');
     var header = 'HD'+bankCode+day+month+year+hour+minutes+seconds+'2.0';
 
-    var logStream = fs.createWriteStream(fileName, {flags: 'a'});
-    logStream.write(header);
-    logStream.end(endOfLine);
+  
+    // var logStream = fs.createWriteStream(fileName, {flags: 'a'});
+    // logStream.write(header);
+    // //logStream.wirte(header);
+    // logStream.write(endOfLine);
+    // logStream.end();
+
+    return header;
 
 }
 
 
  function generateFile(req, res,next) {
 
-   var fileName = createApplicationFile();
-   insertHeader(fileName);
-   insertRecord(fileName);
+    var records = extractRecordsFromSpreadSheet();
+    //records.push(record);
 
-      next();
+    var content = [];
+    var fileName = createApplicationFile();
+    content.push(getHeader());
+    console.log(content);
+    
+    //should be for each (record in reocrds) here
+    content.push(extractRecordsString(records));
+
+
+    insertContentToFile(fileName,content);
+    next();
  }
 
 
- function insertRecord(fileName)
+  function extractRecordsString(records)
  {
+    
     var record = new Record();
     record._bankCode = bankCode;
     record._firstName = 'fffff';
@@ -92,32 +108,23 @@ Object.keys(record).forEach(function(key)
 });
 
 console.log(recordString);
-// recordArray.forEach(function(key)
-// {
-//     console.log(recordArray[key]);
-// });
-  
+
+return recordString;
    
  }
 
-function createFile()
+function insertContentToFile(fileName,content)
 {
-    var logStream = fs.createWriteStream('newFile.txt', {flags: 'a'});
-    // use {flags: 'a'} to append and {flags: 'w'} to erase and write a new file
-    logStream.write('Initial line...');
-   
-    logStream.write(endOfLine);
-    logStream.write(endOfLine);
-    logStream.write(endOfLine);
-    //logStream.end('this is the end line');
-    logStream.write('Initial line...');
-   
-    logStream.write(endOfLine);
-    logStream.write(endOfLine);
-    logStream.write(endOfLine);
-    logStream.end('this is the end line');
+    var logStream = fs.createWriteStream(fileName, {flags: 'a'});
+     
 
+    Object.values(content).forEach(function(value){
+        logStream.write(value);
+        logStream.write(endOfLine);
+        
+    });
 
+    logStream.end();
 }
 
 

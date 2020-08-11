@@ -5,13 +5,17 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.generateFile = generateFile;
 
-var _fs = _interopRequireDefault(require("fs"));
+var _fs = _interopRequireWildcard(require("fs"));
 
 var _os = require("os");
 
 var _ApplicationRecord = require("../models/ApplicationRecord");
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+var _recordExtractor = require("./recordExtractor");
+
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
 let endOfLine = _os.EOL;
 let bankCode = '020354';
@@ -40,7 +44,7 @@ function createApplicationFile() {
   return name;
 }
 
-function insertHeader(fileName) {
+function getHeader() {
   var today = new Date();
   var day = String(today.getDate()).padStart(2, '0');
   var month = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
@@ -49,24 +53,29 @@ function insertHeader(fileName) {
   var hour = String(today.getHours()).padStart(2, '0');
   var minutes = String(today.getMinutes()).padStart(2, '0');
   var seconds = String(today.getSeconds()).padStart(2, '0');
-  var header = 'HD' + bankCode + day + month + year + hour + minutes + seconds + '2.0';
+  var header = 'HD' + bankCode + day + month + year + hour + minutes + seconds + '2.0'; // var logStream = fs.createWriteStream(fileName, {flags: 'a'});
+  // logStream.write(header);
+  // //logStream.wirte(header);
+  // logStream.write(endOfLine);
+  // logStream.end();
 
-  var logStream = _fs.default.createWriteStream(fileName, {
-    flags: 'a'
-  });
-
-  logStream.write(header);
-  logStream.end(endOfLine);
+  return header;
 }
 
 function generateFile(req, res, next) {
+  var records = (0, _recordExtractor.extractRecordsFromSpreadSheet)(); //records.push(record);
+
+  var content = [];
   var fileName = createApplicationFile();
-  insertHeader(fileName);
-  insertRecord(fileName);
+  content.push(getHeader());
+  console.log(content); //should be for each (record in reocrds) here
+
+  content.push(extractRecordsString(records));
+  insertContentToFile(fileName, content);
   next();
 }
 
-function insertRecord(fileName) {
+function extractRecordsString(records) {
   var record = new _ApplicationRecord.Record();
   record._bankCode = bankCode;
   record._firstName = 'fffff';
@@ -88,26 +97,18 @@ function insertRecord(fileName) {
       recordString = value;
     } else recordString = recordString + '|' + value;
   });
-  console.log(recordString); // recordArray.forEach(function(key)
-  // {
-  //     console.log(recordArray[key]);
-  // });
+  console.log(recordString);
+  return recordString;
 }
 
-function createFile() {
-  var logStream = _fs.default.createWriteStream('newFile.txt', {
+function insertContentToFile(fileName, content) {
+  var logStream = _fs.default.createWriteStream(fileName, {
     flags: 'a'
-  }); // use {flags: 'a'} to append and {flags: 'w'} to erase and write a new file
+  });
 
-
-  logStream.write('Initial line...');
-  logStream.write(endOfLine);
-  logStream.write(endOfLine);
-  logStream.write(endOfLine); //logStream.end('this is the end line');
-
-  logStream.write('Initial line...');
-  logStream.write(endOfLine);
-  logStream.write(endOfLine);
-  logStream.write(endOfLine);
-  logStream.end('this is the end line');
+  Object.values(content).forEach(function (value) {
+    logStream.write(value);
+    logStream.write(endOfLine);
+  });
+  logStream.end();
 }
