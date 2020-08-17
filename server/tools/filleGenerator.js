@@ -46,7 +46,7 @@ function getHeader()
     var hour = String(today.getHours()).padStart(2,'0');
     var minutes = String(today.getMinutes()).padStart(2,'0');
     var seconds = String(today.getSeconds()).padStart(2,'0');
-    var header = 'HD'+bankCode+day+month+year+hour+minutes+seconds+'2.0';
+    var header = 'HD'+'|'+bankCode+'|'+day+month+year+hour+minutes+seconds+'|'+'2.0';
 
   
     // var logStream = fs.createWriteStream(fileName, {flags: 'a'});
@@ -62,7 +62,7 @@ function getHeader()
 function getFooter(count)
 {
     var recordCount = count.toString().padStart(9,'0');
-    var footer = 'FT'+recordCount;
+    var footer = 'FT'+'|'+recordCount;
 
     return footer;
 }
@@ -100,7 +100,7 @@ function getFooter(count)
              var value = record[key];
                 if(!value)
                {
-                    value = '|';
+                    value = '';
                 }
                 if(recordString == '')
                  {
@@ -108,10 +108,12 @@ function getFooter(count)
                 } 
                 else
                 recordString = recordString+'|'+value;
+
+               
 });
     
-
-
+//end the record with '|' 
+//recordString = recordString+'|';
 console.log(recordString);
 
 return recordString;

@@ -53,7 +53,7 @@ function getHeader() {
   var hour = String(today.getHours()).padStart(2, '0');
   var minutes = String(today.getMinutes()).padStart(2, '0');
   var seconds = String(today.getSeconds()).padStart(2, '0');
-  var header = 'HD' + bankCode + day + month + year + hour + minutes + seconds + '2.0'; // var logStream = fs.createWriteStream(fileName, {flags: 'a'});
+  var header = 'HD' + '|' + bankCode + '|' + day + month + year + hour + minutes + seconds + '|' + '2.0'; // var logStream = fs.createWriteStream(fileName, {flags: 'a'});
   // logStream.write(header);
   // //logStream.wirte(header);
   // logStream.write(endOfLine);
@@ -64,7 +64,7 @@ function getHeader() {
 
 function getFooter(count) {
   var recordCount = count.toString().padStart(9, '0');
-  var footer = 'FT' + recordCount;
+  var footer = 'FT' + '|' + recordCount;
   return footer;
 }
 
@@ -91,13 +91,15 @@ function extractRecordsString(record) {
     var value = record[key];
 
     if (!value) {
-      value = '|';
+      value = '';
     }
 
     if (recordString == '') {
       recordString = value;
     } else recordString = recordString + '|' + value;
-  });
+  }); //end the record with '|' 
+  //recordString = recordString+'|';
+
   console.log(recordString);
   return recordString;
 }
