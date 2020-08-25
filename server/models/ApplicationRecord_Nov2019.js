@@ -1,85 +1,11 @@
 export class Record
 {
     constructor(
-        requestType,
-        deviceIdentifierType,
-        deviveIdentfier,
-        CBSClientID,
-        branchCode,
-        VIPFlag,
-        customerType,
-        primaryDeviceNumber,
-        title,
-        familyName,
-        firstName,
-        middleName1,
-        middleName2,
-        maidenName,
-        embossedName,
-        encodedName,
-        maritalStatus,
-        gender,
-        legalID1,
-        legalID1Type,
-        legalID1IssuancePlace,
-        legalID1ExpiryDate,
-        legalID2,
-        legalID2Type,
-        legalID2IssuancePlace,
-        legalID2ExpiryDate,
-        legalID3,
-        legalID3Type,
-        legalID3IssuancePlace,
-        legalID3ExpiryDate,
-        legalID4,
-        legalID4Type,
-        legalID4IssuancePlace,
-        legalID4ExpiryDate,
-        nationalityCode,
-        birthDate,
-        birthCity,
-        birthCountry,
-        languagePreference,
-        education,
-        preferredMailingAddress,
-        currentAddressLine1,
-        currentAddressLine2,
-        currentAddressLine3,
-        currentAddressLine4,
-        currentCountryCode,
-        currentCity,
-        currentPostalCode,
-        currentStateCode,
-        currentContractNo1,
-        currentContractNo2,
-        permanentAddressLine1,
-        permanentAddressLine2,
-        permanentAddressLine3,
-        permanentAddressLine4,
-        permanentCountry,
-        permanentCity,
-        permanentStateCode,
-        permanentPostalCode,
-        permanentContractNo1,
-        permanentContractNo2,
-        ISDCode,
-        registeredMobileNumber,
-        registeredMailID,
-        faxNumber,
-        registerForDNCR,
-        SMSAlertList,
-        emailAlertList,
-        statementPreference,
-        occupation,
-        employerName,
-
-
-
         bankCode,
         formNumber,
         applicationType,
         applicationSubType,
-
+        customerType,
         programCode,
         existingDeviceNumber,
         existingClientCode,
@@ -112,29 +38,60 @@ export class Record
         devicePlanCode6,
         devicePlanPromoCode6,
         devicePhotoIndicator6,
-
+        branchCode,
         corporateClientCode,
-    
-
-
- 
+        title,
+        firstName,
+        middleName1,
+        middleName2,
+        lastName,
+        gender,
+        maidenName,
+        married,
+        nationality,
+        birthDate,
+        birthCity,
+        birthCountry,
+        education,
+        VIPFlag,
+        embossedName,
+        encodedName,
         KYCStatus,
         KYCRemarks,
         travelPurpose,
         pictureCode,
         photoCode,
- 
-
+        preferredMailingAddress,
+        currentAddressLine1,
+        currentAddressLine2,
+        currentAddressLine3,
+        currentAddressLine4,
+        currentCityCode,
+        currentStateCode,
+        currentCountryCode,
+        currentZIPCode,
         currentPhoneNumber1,
         currentPhoneNumber2,
-     
+        permanentAddressLine1,
+        permanentAddressLine2,
+        permanentAddressLine3,
+        permanentAddressLine4,
+        permanentCityCode,
+        permanentStateCode,
+        permanentCountryCode,
+        permanentZIPCode,
         permanentPhoneNumber1,
         permanentPhoneNumber2,
-
-      
+        faxNumber,
+        registerForDNCR,
+        SMSAlertList,
+        emailAlertList,
+        statementPreference,
         deliveryMode,
-       
-
+        registeredMobileISDCode,
+        registeredMobileNumber,
+        registeredMailID,
+        languagePreference,
         officeAddressLine1,
         officeAddressLine2,
         officeAddressLine3,
@@ -148,7 +105,22 @@ export class Record
         officeEmailID,
         officeISDCode,
         officeMobileNumber,
-       
+        legalID1Type,
+        legalID1,
+        legalID1ExpiryDate,
+        legalID1IssuancePlace,
+        legalID2Type,
+        legalID2,
+        legalID2ExpiryDate,
+        legalID2IssuancePlace,
+        legalID3Type,
+        legalID3,
+        legalID3ExpiryDate,
+        legalID3IssuancePlace,
+        legalID4Type,
+        legalID4,
+        legalID4ExpiryDate,
+        legalID4IssuancePlace,
         memo,
         clientCustomDate1,
         clientCustomDate2,
@@ -197,12 +169,12 @@ export class Record
         walletCustomNumber5,
         employmentStatus,
         emplID, 
-
+        employerName,
         emplDesignation,
         emplDepartment,
         compType, 
         currentJobTenure,
-
+        occupation,
         applicantProf,
         emplJoiningDate,
         travelTypecode,
@@ -277,12 +249,12 @@ export class Record
         this._firstName=        firstName;
         this._middleName1=        middleName1;
         this._middleName2=        middleName2;
-        this._familyName=        familyName;
+        this._lastName=        lastName;
         this._gender=        gender;
         this._maidenName=        maidenName;
-        this._maritalStatus=        maritalStatus;
+        this._married=        married;
         
-        this._nationalityCode=        nationalityCode;
+        this._nationality=        nationality;
         this._birthDate=        birthDate;
         this._birthCity=        birthCity;
         this._birthCountry=        birthCountry;
@@ -304,13 +276,10 @@ export class Record
         this._currentAddressLine3=        currentAddressLine3;
         this._currentAddressLine4=        currentAddressLine4;
         
-        this._currentCity=        currentCity;
-        this._currentPostalCode = currentPostalCode;
+        this._currentCityCode=        currentCityCode;
         this._currentStateCode=        currentStateCode;
-        this._currentContractNo1 =      currentContractNo1;
-        this._currentContractNo2 =currentContractNo2;
         this._currentCountryCode=        currentCountryCode;
- 
+        this._currentZIPCode=        currentZIPCode;
         
         this._currentPhoneNumber1=        currentPhoneNumber1;
         this._currentPhoneNumber2=        currentPhoneNumber2;
@@ -318,13 +287,11 @@ export class Record
         this._permanentAddressLine2=        permanentAddressLine2;
         this._permanentAddressLine3=        permanentAddressLine3;
         this._permanentAddressLine4=        permanentAddressLine4;
-        this._permanentCity=        permanentCity;
+        this._permanentCityCode=        permanentCityCode;
         
         this._permanentStateCode=        permanentStateCode;
-        this._permanentCountry=        permanentCountry;
-        this._permanentPostalCode=        permanentPostalCode;
-        this._permanentContractNo1 =permanentContractNo1;
-        this._permanentContractNo2 =permanentContractNo2;
+        this._permanentCountryCode=        permanentCountryCode;
+        this._permanentZIPCode=        permanentZIPCode;
         this._permanentPhoneNumber1=        permanentPhoneNumber1;
         this._permanentPhoneNumber2=        permanentPhoneNumber2;
         
@@ -335,7 +302,7 @@ export class Record
         
         this._statementPreference=        statementPreference;
         this._deliveryMode=        deliveryMode;
-        this._ISDCode = ISDCode;
+        this._registeredMobileISDCode = registeredMobileISDCode;
         this._registeredMobileNumber=        registeredMobileNumber;
         this._registeredMailID=        registeredMailID;
         this._languagePreference=        languagePreference;
