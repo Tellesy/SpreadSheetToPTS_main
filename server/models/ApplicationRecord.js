@@ -10,7 +10,7 @@ export class Record
         customerType,
         primaryDeviceNumber,
         title,
-        familyName,
+        lastName,
         firstName,
         middleName1,
         middleName2,
@@ -119,6 +119,7 @@ export class Record
         deliveryDate,
         accountNumber,
         accountCurrency,
+        accountType,
         corporateClientCode,
         clientCustomDate1,
         clientCustomDate2,
@@ -130,16 +131,16 @@ export class Record
         clientCustomNumber3,
         clientCustomNumber4,
         clientCustomNumber5,
-        clientCustomVoucher1,
-        clientCustomVoucher2,
-        clientCustomVoucher3,
-        clientCustomVoucher4,
-        clientCustomVoucher5,
-        deviceCustomVoucher1,
-        deviceCustomVoucher2,
-        deviceCustomVoucher3,
-        deviceCustomVoucher4,
-        deviceCustomVoucher5,
+        clientCustomVarchar1,
+        clientCustomVarchar2,
+        clientCustomVarchar3,
+        clientCustomVarchar4,
+        clientCustomVarchar5,
+        deviceCustomVarchar1,
+        deviceCustomVarchar2,
+        deviceCustomVarchar3,
+        deviceCustomVarchar4,
+        deviceCustomVarchar5,
         deviceCustomDate1,
         deviceCustomDate2,
         deviceCustomDate3,
@@ -160,11 +161,11 @@ export class Record
         walletCustomDate3,
         walletCustomDate4,
         walletCustomDate5,
-        walletCustomVoucher1,
-        walletCustomVoucher2,
-        walletCustomVoucher3,
-        walletCustomVoucher4,
-        walletCustomVoucher5,
+        walletCustomVarchar1,
+        walletCustomVarchar2,
+        walletCustomVarchar3,
+        walletCustomVarchar4,
+        walletCustomVarchar5,
         lodgingMode,
         permanentAddressFrom,
         alternateName,
@@ -194,15 +195,15 @@ export class Record
 
 
         this._requestType = requestType;
-        this._deviceIdentifierType = deviceIdentifierType;
-        this._deviceIdentifier = deviceIdentifier;
+        this._deviceIdentifierType = deviceIdentifierType; 
+        this._deviveIdentfier = deviveIdentfier;
         this._CBSClientID = CBSClientID;
         this._branchCode= branchCode;
         this._VIPFlag= VIPFlag;
         this._customerType= customerType;
         this._primaryDeviceNumber = primaryDeviceNumber;
         this._title = title;
-        this._familyName = familyName;
+        this._lastName = lastName;
         this._firstName = firstName;
         this._middleName1 = middleName1;
         this._middleName2 = middleName2;
@@ -323,153 +324,64 @@ export class Record
         this._clientCustomNumber3=clientCustomNumber3;
         this._clientCustomNumber4=clientCustomNumber4;
         this._clientCustomNumber5=clientCustomNumber5;
-        this._clientCustomVoucher1=clientCustomVoucher1;
-        this._clientCustomVoucher2=clientCustomVoucher2;
-        this._clientCustomVoucher3=clientCustomVoucher3;
-        this._clientCustomVoucher4=clientCustomVoucher4;
-        this._clientCustomVoucher5=clientCustomVoucher5;
-       //Start here
-
-
-        this._formNumber=        formNumber;
-        this._applicationType=        applicationType;
-        this._applicationSubType=        applicationSubType;
-        
-
-        this._existingDeviceNumber=        existingDeviceNumber;
-        this._existingClientCode=        existingClientCode;
-        this._existingAddOnClientCode=        existingAddOnClientCode;
-       
-        this._relationWithPrimaryClient=        relationWithPrimaryClient;
-       
-        this._walletPlan2Promo=        walletPlan2Promo;
-        this._walletPlan3Promo=        walletPlan3Promo;
-        this._deviceType1=        deviceType1;
-        this._devicePlanCode1=        devicePlanCode1;
-        this._devicePlanPromoCode1=        devicePlanPromoCode1;
-       
-        this._devicePhotoIndicator1=        devicePhotoIndicator1;
-       
-        this._deviceType2=        deviceType2;
-        this._devicePlanCode2=        devicePlanCode2;
-        this._devicePlanPromoCode2=        devicePlanPromoCode2;
-        this._devicePhotoIndicator2=        devicePhotoIndicator2;
-        
-        this._deviceType3=        deviceType3; 
-        this._devicePlanCode3=        devicePlanCode3;
-        this._devicePlanPromoCode3=        devicePlanPromoCode3;
-        this._devicePhotoIndicator3=        devicePhotoIndicator3;
-        
-        this._deviceType4=        deviceType4;
-        this._devicePlanCode4=        devicePlanCode4;
-        this._devicePlanPromoCode4=        devicePlanPromoCode4;
-        this._devicePhotoIndicator4=        devicePhotoIndicator4;
-        
-        this._deviceType5=        deviceType5;
-        this._devicePlanCode5=        devicePlanCode5;
-        this._devicePlanPromoCode5=        devicePlanPromoCode5;
-        this._devicePhotoIndicator5=        devicePhotoIndicator5;
-        
-        this._deviceType6=        deviceType6;
-        this._devicePlanCode6=        devicePlanCode6;
-
-
-        this._devicePlanPromoCode6=        devicePlanPromoCode6;
-        this._devicePhotoIndicator6=        devicePhotoIndicator6;
-        
-       
-        this._corporateClientCode=        corporateClientCode;
-        
-      
-        
-   
-       
- 
-        
-        this._KYCStatus=        KYCStatus;
-        this._KYCRemarks=        KYCRemarks;
-        this._travelPurpose=        travelPurpose;
-   
-   
-
-
-       
- 
-        
-
-      
-
-
-  
-
-    
-
-
-       
-     
-       
-        this._memo=memo;
-       
-  
-       
+        this._clientCustomVarchar1=clientCustomVarchar1;
+        this._clientCustomVarchar2=clientCustomVarchar2;
+        this._clientCustomVarchar3=clientCustomVarchar3;
+        this._clientCustomVarchar4=clientCustomVarchar4;
+        this._clientCustomVarchar5=clientCustomVarchar5;
+        this._deviceCustomVarchar1=deviceCustomVarchar1;
+        this._deviceCustomVarchar2=deviceCustomVarchar2;
+        this._deviceCustomVarchar3=deviceCustomVarchar3;
+        this._deviceCustomVarchar4=deviceCustomVarchar4;
+        this._deviceCustomVarchar5=deviceCustomVarchar5;
         this._deviceCustomDate1=deviceCustomDate1;
         this._deviceCustomDate2=deviceCustomDate2;
         this._deviceCustomDate3=deviceCustomDate3;
         this._deviceCustomDate4=deviceCustomDate4;
         this._deviceCustomDate5=deviceCustomDate5;
-       
-        this._deviceCustomData1=deviceCustomData1;
-        this._deviceCustomData2=deviceCustomData2;
-        this._deviceCustomData3=deviceCustomData3;
-        this._deviceCustomData4=deviceCustomData4;
-        this._deviceCustomData5=deviceCustomData5;
-       
         this._deviceCustomNumber1 = deviceCustomNumber1;
         this._deviceCustomNumber2 = deviceCustomNumber2;
         this._deviceCustomNumber3 = deviceCustomNumber3;
         this._deviceCustomNumber4 = deviceCustomNumber4;
         this._deviceCustomNumber5 = deviceCustomNumber5;
-       
-        this._walletCustomDate1 =walletCustomDate1;
-        this._walletCustomDate2 = walletCustomDate2;
-        this._walletCustomDate3 =walletCustomDate3;
-        this._walletCustomDate4 =walletCustomDate4;
-        this._walletCustomDate5 =walletCustomDate5;
-       
-        this._walletCustomData1 = walletCustomData1;
-        this._walletCustomData2 = walletCustomData2;
-        this._walletCustomData3 = walletCustomData3;
-        this._walletCustomData4 = walletCustomData4;
-        this._walletCustomData5 = walletCustomData5;
-       
         this._walletCustomNumber1 =walletCustomNumber1;
         this._walletCustomNumber2 =walletCustomNumber2;
         this._walletCustomNumber3 = walletCustomNumber3;
         this._walletCustomNumber4 =walletCustomNumber4;
         this._walletCustomNumber5 =walletCustomNumber5;
-       
-
-        this._emplID= emplID; 
-  
-
-        this._compType = compType;
-   
-       
-        this._applicantProf = applicantProf;
-       
-        this._travelTypecode = travelTypecode;
-        this._travelDestinationCountry = travelDestinationCountry;
-        this._travelStartDate = travelStartDate;
-        this._travelEndDate = travelEndDate;
-        this._clientCustomerID = clientCustomerID;
-        this._riskCategoryValue = riskCategoryValue;
-        this._cobrandNumber = cobrandNumber;
-        this._reuterReferenceNumber = reuterReferenceNumber;
-       
+        this._walletCustomDate1 =walletCustomDate1;
+        this._walletCustomDate2 = walletCustomDate2;
+        this._walletCustomDate3 =walletCustomDate3;
+        this._walletCustomDate4 =walletCustomDate4;
+        this._walletCustomDate5 =walletCustomDate5;
+        this._walletCustomVarchar1 = walletCustomVarchar1;
+        this._walletCustomVarchar2 = walletCustomVarchar2;
+        this._walletCustomVarchar3 = walletCustomVarchar3;
+        this._walletCustomVarchar4 = walletCustomVarchar4;
+        this._walletCustomVarchar5 = walletCustomVarchar5;
         this._lodgingMode = lodgingMode;
         this._permanentAddressFrom = permanentAddressFrom;
-       
-        this._clientGSTINNumber = clientGSTINNumber;
-        this._checksum = checksum;
+        this._alternateName = alternateName;
+        this._filler1 = filler1;
+        this._filler2 = filler2;
+        this._filler3 = filler3;
+        this._filler4 = filler4;
+        this._filler5 = filler5;
+        this._filler6 = filler6;
+        this._filler7 = filler7;
+        this._filler8 = filler8;
+        this._filler9 = filler9;
+        this._filler10 = filler10;
+        this._filler11 = filler11;
+        this._filler12 = filler12;
+        this._filler13 = filler13;
+        this._filler14 = filler14;
+        this._filler15 = filler15;
+        this._filler16 = filler16;
+        this._filler17 = filler17;
+        this._filler18 = filler18;
+        this._filler19 = filler19;
+        this._filler20 = filler20;
+        this._checksum = checksum;    
     }
 }

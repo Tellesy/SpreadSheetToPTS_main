@@ -20,10 +20,10 @@ function createApplicationFile()
     var minutes = String(today.getMinutes()).padStart(2,'0');
     var seconds = String(today.getSeconds()).padStart(2,'0');
 
-    var product = 'P';
+    var product = 'PR';
     var sequence = 1;
 
-    var name = 'CFU'+bankCode+product+day+month+year+hour+minutes+seconds+String(sequence).padStart(6,'0')+'.dat';
+    var name = 'APP'+product+bankCode+day+month+year+hour+minutes+seconds+String(sequence).padStart(6,'0')+'.dat';
 
     if(fs.existsSync(name))
     {
