@@ -2,7 +2,7 @@ import fs from 'fs';
 import {EOL} from 'os';
 import config from '../config';
 
-import {Record} from '../models/ApplicationRecord';
+import {Record} from '../models/CardFileUploadRecord_July2020';
 import {extractRecordsFromSpreadSheet} from './recordExtractor';
 
 const endOfLine = EOL;

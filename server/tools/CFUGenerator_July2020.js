@@ -1,9 +1,8 @@
-//Application Generator July2020 version
 import fs from 'fs';
 import {EOL} from 'os';
 import config from '../config';
 
-import {Record} from '../models/ApplicationRecord';
+import {Record} from '../models/CardFileUploadRecord_July2020';
 import {extractRecordsFromSpreadSheet} from './recordExtractor';
 
 const endOfLine = EOL;
@@ -21,10 +20,10 @@ function createApplicationFile()
     var minutes = String(today.getMinutes()).padStart(2,'0');
     var seconds = String(today.getSeconds()).padStart(2,'0');
 
-    var product = 'PR';
+    var product = 'P';
     var sequence = 1;
 
-    var name = 'APP'+product+bankCode+day+month+year+hour+minutes+seconds+String(sequence).padStart(6,'0')+'.dat';
+    var name = 'CFU'+bankCode+product+day+month+year+hour+minutes+seconds+String(sequence).padStart(6,'0')+'.dat';
 
     if(fs.existsSync(name))
     {
@@ -96,13 +95,8 @@ function getFooter(count)
     console.log(record);
     var recordString = '';
 
-        
         Object.keys(record).forEach(function(key)
         {
-            if(key== '_bankCode')
-            {
-                record[key] = bankCode;
-            }
              var value = record[key];
                 if(!value)
                {

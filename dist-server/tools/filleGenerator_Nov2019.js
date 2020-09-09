@@ -11,7 +11,7 @@ var _os = require("os");
 
 var _config = _interopRequireDefault(require("../config"));
 
-var _ApplicationRecord = require("../models/ApplicationRecord");
+var _CardFileUploadRecord_July = require("../models/CardFileUploadRecord_July2020");
 
 var _recordExtractor = require("./recordExtractor");
 

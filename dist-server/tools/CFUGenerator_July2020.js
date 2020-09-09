@@ -11,13 +11,12 @@ var _os = require("os");
 
 var _config = _interopRequireDefault(require("../config"));
 
-var _ApplicationRecord = require("../models/ApplicationRecord");
+var _CardFileUploadRecord_July = require("../models/CardFileUploadRecord_July2020");
 
 var _recordExtractor = require("./recordExtractor");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-//Application Generator July2020 version
 const endOfLine = _os.EOL;
 const bankCode = _config.default.bank_code;
 
@@ -31,9 +30,9 @@ function createApplicationFile() {
   var hour = String(today.getHours()).padStart(2, '0');
   var minutes = String(today.getMinutes()).padStart(2, '0');
   var seconds = String(today.getSeconds()).padStart(2, '0');
-  var product = 'PR';
+  var product = 'P';
   var sequence = 1;
-  var name = 'APP' + product + bankCode + day + month + year + hour + minutes + seconds + String(sequence).padStart(6, '0') + '.dat';
+  var name = 'CFU' + bankCode + product + day + month + year + hour + minutes + seconds + String(sequence).padStart(6, '0') + '.dat';
 
   if (_fs.default.existsSync(name)) {
     sequence++;
@@ -89,10 +88,6 @@ function extractRecordsString(record) {
   console.log(record);
   var recordString = '';
   Object.keys(record).forEach(function (key) {
-    if (key == '_bankCode') {
-      record[key] = bankCode;
-    }
-
     var value = record[key];
 
     if (!value) {
